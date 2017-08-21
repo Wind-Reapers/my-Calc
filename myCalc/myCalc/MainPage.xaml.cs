@@ -24,28 +24,23 @@ namespace myCalc
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        class currencyType
-        {
-            public string currency { get; set; }
-        }
-
         public MainPage()
         {
             this.InitializeComponent();
-        }
+            string[] currencyType = { "USD", "EUR", "GBP", "RUB" };
+            decimal[] currencyRate = { 1.00m, 0.85m, 0.78m, 59.03m };
 
-        private void quit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
+            foreach (var type in currencyType)
+            {
+                comboBox.Items.Add(type);
+            }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            foreach (var type in currencyRate)
+            {
+                comboBox1.Items.Add(type);
+            }
 
-        }
-
-        private async void calc_Click(object sender, RoutedEventArgs e)
-        {
+            /*
             try
             {
                 string xmlResult = null;
@@ -63,6 +58,40 @@ namespace myCalc
             {
                 output.Text = "Not a valid Currency or Try again later";
             }
+            */
         }
+
+        private void quit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void calc_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //private void sourceUS()
+        //{
+        //    decimal convertedAmount;
+        //    convertedAmount = input * tRate;
+        //}
+
+        //private void targetUS()
+        //{
+        //    decimal convertedAmount;
+        //    convertedAmount = input / tRate;
+        //}
+
+        //private void neitherUS()
+        //{
+        //    decimal convertedAmount;
+        //    convertedAmount = convertedAmount / rateTarget;
+        //}
     }
 }
