@@ -33,8 +33,8 @@ namespace myCalc
 
             foreach (var type in currencyType)
             {
-                sourceCurrency.Items.Add(type);
-                targetCurrency.Items.Add(type);
+                ComboBox.Items.Add(type);
+                ComboBox1.Items.Add(type);
             }
 
             foreach (var type in currencyType)
@@ -78,30 +78,26 @@ namespace myCalc
             string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
             decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
 
-            int sourceIndex = sourceCurrency.SelectedIndex;
-            int conversionRate = rate[sourceIndex];
+            int index = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
+            decimal rate = currencyRate[index];
 
-            output = input.Text * rate[sourceIndex];
-
+            decimal amount = Convert.ToDecimal(input.Text) * rate;
+            output.Text = Convert.ToString(amount);
         }
 
         private void sourceUS()
         {
-            decimal convertedAmount;
-            convertedAmount = Convert.ToDecimal(input.Text) * Convert.ToDecimal(rate.SelectedItem);
+
         }
 
         private void targetUS()
         {
-            decimal convertedAmount;
-            convertedAmount = Convert.ToDecimal(input.Text) / Convert.ToDecimal(rate.SelectedItem);
+
         }
 
         private void neitherUS()
         {
-            decimal convertedAmount;
-            convertedAmount = Convert.ToDecimal(input.Text) * sourceRate;
-            convertedAmount = convertedAmount / Convert.ToDecimal(rate.SelectedItem);
+
         }
     }
 }
