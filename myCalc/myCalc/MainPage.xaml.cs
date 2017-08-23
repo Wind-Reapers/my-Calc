@@ -27,20 +27,22 @@ namespace myCalc
         public MainPage()
         {
             this.InitializeComponent();
-            string[] currencyType = { "USD", "EUR", "GBP", "RUB" };
-            decimal[] currencyRate = { 1.00m, 0.85m, 0.78m, 59.03m };
+
+            string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
+            decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
 
             foreach (var type in currencyType)
             {
-                comboBox.Items.Add(type);
+                sourceCurrency.Items.Add(type);
+                targetCurrency.Items.Add(type);
             }
 
-            foreach (var type in currencyRate)
+            foreach (var type in currencyType)
             {
-                comboBox1.Items.Add(type);
+                rate.Items.Add(type);
             }
 
-            /*
+            /* Code for grabbing current exchange rates from the Web
             try
             {
                 string xmlResult = null;
@@ -73,25 +75,33 @@ namespace myCalc
 
         private void calc_Click(object sender, RoutedEventArgs e)
         {
+            string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
+            decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
+
+            int sourceIndex = sourceCurrency.SelectedIndex;
+            int conversionRate = rate[sourceIndex];
+
+            output = input.Text * rate[sourceIndex];
 
         }
 
-        //private void sourceUS()
-        //{
-        //    decimal convertedAmount;
-        //    convertedAmount = input * tRate;
-        //}
+        private void sourceUS()
+        {
+            decimal convertedAmount;
+            convertedAmount = Convert.ToDecimal(input.Text) * Convert.ToDecimal(rate.SelectedItem);
+        }
 
-        //private void targetUS()
-        //{
-        //    decimal convertedAmount;
-        //    convertedAmount = input / tRate;
-        //}
+        private void targetUS()
+        {
+            decimal convertedAmount;
+            convertedAmount = Convert.ToDecimal(input.Text) / Convert.ToDecimal(rate.SelectedItem);
+        }
 
-        //private void neitherUS()
-        //{
-        //    decimal convertedAmount;
-        //    convertedAmount = convertedAmount / rateTarget;
-        //}
+        private void neitherUS()
+        {
+            decimal convertedAmount;
+            convertedAmount = Convert.ToDecimal(input.Text) * sourceRate;
+            convertedAmount = convertedAmount / Convert.ToDecimal(rate.SelectedItem);
+        }
     }
 }
