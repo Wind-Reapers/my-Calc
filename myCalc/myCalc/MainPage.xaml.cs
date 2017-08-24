@@ -78,26 +78,54 @@ namespace myCalc
             string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
             decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
 
-            int index = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
-            decimal rate = currencyRate[index];
+            if (String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal))
+            {
+                int index = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
+                decimal rate = currencyRate[index];
 
-            decimal amount = Convert.ToDecimal(input.Text) * rate;
-            output.Text = Convert.ToString(amount);
+                decimal amount = sourceUS(Convert.ToDecimal(input.Text), rate);
+                output.Text = Convert.ToString(Math.Round(amount, 2));
+            }
+            else if (String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
+            {
+                int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
+                decimal rate = currencyRate[index];
+
+                decimal amount = targetUS(Convert.ToDecimal(input.Text), rate);
+                output.Text = Convert.ToString(Math.Round(amount, 2));
+            }
+            else if (!String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal) && !String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
+            {
+                int i = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
+                decimal r = currencyRate[i];
+
+                int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
+                decimal rate = currencyRate[index];
+
+                decimal amount = neitherUS(Convert.ToDecimal(input.Text), r, rate);
+                output.Text = Convert.ToString(Math.Round(amount, 2));
+            }
+            else
+            {
+                output.Text = "There was an error  ¯\\_(ツ)_/¯";
+            }
         }
 
-        private void sourceUS()
+        private decimal sourceUS(decimal source, decimal target)
         {
-
+            return source * target;
         }
 
-        private void targetUS()
+        private decimal targetUS(decimal source, decimal target)
         {
-
+            return source / target;
         }
 
-        private void neitherUS()
+        private decimal neitherUS(decimal input, decimal sourcer, decimal targetr)
         {
-
+            decimal converstion = sourcer / targetr;
+            return input * converstion;
         }
+
     }
 }

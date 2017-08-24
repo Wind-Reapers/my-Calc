@@ -11,7 +11,7 @@
         <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="comboBox_SelectionChanged" PlaceholderText="Source Currency"/>
         <ComboBox x:Name="ComboBox1" HorizontalAlignment="Left" Margin="60,150,0,0" VerticalAlignment="Top" Width="250" PlaceholderText="Target Currency"/>
         <ComboBox x:Name="rate" HorizontalAlignment="Left" Margin="60,200,0,0" VerticalAlignment="Top" Width="120" Visibility="Collapsed"/>
-        <TextBox x:Name="input" HorizontalAlignment="Left" Margin="60,350,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="250"/>
+        <TextBox x:Name="input" HorizontalAlignment="Left" Margin="60,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" PlaceholderText="Amount"/>
         <TextBlock x:Name="output" HorizontalAlignment="Left" Margin="60,450,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="250"/>
         <Button x:Name="calc" Content="Calculate" HorizontalAlignment="Left" Margin="60,550,0,0" VerticalAlignment="Top" Width="100" Click="calc_Click"/>
         <Button x:Name="quit" Content="Quit" HorizontalAlignment="Left" Margin="200,550,0,0" VerticalAlignment="Top" Width="100" Click="quit_Click"/>
