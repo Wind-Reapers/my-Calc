@@ -30,7 +30,7 @@ namespace myCalc
             this.InitializeComponent();
 
             string[] currencyType = File.ReadAllLines("Assets/currencies.txt");
-            decimal[] currencyRate = { 1.00m, 1.25129m, 0.847799m, 0.780700m, 59.1626m };
+            string[] currencyRate = File.ReadAllLines("Assets/rates.txt"); //{ 1.00m, 1.25129m, 0.847799m, 0.780700m, 59.1626m };
 
             foreach (var type in currencyType)
             {
@@ -76,9 +76,8 @@ namespace myCalc
         }
 
         private async void calc_Click(object sender, RoutedEventArgs e)
-        {
-            string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
-            decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
+        { 
+            decimal[] currencyRate = { 1.00m, 1.25129m, 0.847799m, 0.780700m, 59.1626m };
 
             try
             {

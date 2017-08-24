@@ -108,7 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\currencies.txt" />
+    <Content Include="Assets\jeff.jpg" />
+    <Content Include="Assets\moua.jpg" />
     <Content Include="Assets\rates.txt" />
+    <Content Include="Assets\zach.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

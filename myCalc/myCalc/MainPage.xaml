@@ -8,13 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="comboBox_SelectionChanged" PlaceholderText="Source Currency" MaxDropDownHeight="175"/>
-        <ComboBox x:Name="ComboBox1" HorizontalAlignment="Left" Margin="60,150,0,0" VerticalAlignment="Top" Width="250" PlaceholderText="Target Currency" MaxDropDownHeight="175"/>
-        <ComboBox x:Name="rate" HorizontalAlignment="Left" Margin="60,200,0,0" VerticalAlignment="Top" Width="120" Visibility="Collapsed"/>
-        <TextBox x:Name="input" HorizontalAlignment="Left" Margin="60,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" PlaceholderText="Amount"/>
-        <TextBlock x:Name="output" HorizontalAlignment="Left" Margin="60,450,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="250"/>
-        <Button x:Name="calc" Content="Calculate" HorizontalAlignment="Left" Margin="60,550,0,0" VerticalAlignment="Top" Width="100" Click="calc_Click"/>
-        <Button x:Name="quit" Content="Quit" HorizontalAlignment="Left" Margin="200,550,0,0" VerticalAlignment="Top" Width="100" Click="quit_Click"/>
+        <ComboBox x:Name="ComboBox" HorizontalAlignment="Right" Margin="0,246,200,0" VerticalAlignment="Top" Width="300" SelectionChanged="comboBox_SelectionChanged" PlaceholderText="Source Currency" MaxDropDownHeight="175" FontSize="24"/>
+        <ComboBox x:Name="ComboBox1" HorizontalAlignment="Left" Margin="200,246,0,0" VerticalAlignment="Top" Width="300" PlaceholderText="Target Currency" MaxDropDownHeight="175" FontSize="24"/>
+        <ComboBox x:Name="rate" HorizontalAlignment="Left" Margin="90,200,90,0" VerticalAlignment="Top" Width="120" Visibility="Collapsed"/>
+        <TextBox x:Name="input" HorizontalAlignment="Left" Margin="200,418,0,0" TextWrapping="Wrap" Text="1.00" VerticalAlignment="Top" Width="300" PlaceholderText="" FontSize="24"/>
+        <TextBlock x:Name="output" HorizontalAlignment="Right" Margin="0,418,200,0" TextWrapping="Wrap" Text="Converted Amount" VerticalAlignment="Top" Width="300" FontSize="24"/>
+        <Button x:Name="calc" Content="Calculate" HorizontalAlignment="Left" Margin="300,550,0,0" VerticalAlignment="Top" Height="75" Width="250" Click="calc_Click" FontSize="36"/>
+        <Button x:Name="quit" Content="Quit" HorizontalAlignment="Right" Margin="0,550,300,0" VerticalAlignment="Top" Height="75" Width="250" Click="quit_Click" FontSize="36"/>
+        <Image x:Name="jeff" HorizontalAlignment="Left" Height="150" Margin="350,50,0,0" VerticalAlignment="Top" Width="150" Source="Assets/jeff.jpg"/>
+        <Image x:Name="moua" Height="150" Margin="567,50,0,0" VerticalAlignment="Top" Source="Assets/moua.jpg" HorizontalAlignment="Left" Width="155"/>
+        <Image x:Name="zach" HorizontalAlignment="Right" Height="150" Margin="0,50,350,0" VerticalAlignment="Top" Width="150" Source="Assets/zach.jpg"/>
 
     </Grid>
 </Page>
