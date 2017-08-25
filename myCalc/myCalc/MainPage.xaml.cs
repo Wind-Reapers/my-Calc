@@ -7,6 +7,7 @@ using System.Net;
 using System.Xml;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,16 +29,17 @@ namespace myCalc
         {
             this.InitializeComponent();
 
-            string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
-            decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
+            string[] currencyType = File.ReadAllLines("Assets/currencies.txt");
+            decimal[] currencyRate = { 1.00m, 1.25129m, 0.847799m, 0.780700m, 59.1626m };
 
             foreach (var type in currencyType)
             {
-                ComboBox.Items.Add(type);
-                ComboBox1.Items.Add(type);
+                string[] tokens = type.Split(';');
+                ComboBox.Items.Add(tokens[0]);
+                ComboBox1.Items.Add(tokens[0]);
             }
 
-            foreach (var type in currencyType)
+            foreach (var type in currencyRate)
             {
                 rate.Items.Add(type);
             }
@@ -78,36 +80,44 @@ namespace myCalc
             string[] currencyType = { "USD", "CAD", "EUR", "GBP", "RUB" };
             decimal[] currencyRate = { 1.00m, 1.26m, 0.85m, 0.78m, 59.03m };
 
-            if (String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal))
+            try
             {
-                int index = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
-                decimal rate = currencyRate[index];
+                if (String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal))
+                {
+                    int index = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
+                    decimal rate = currencyRate[index];
 
-                decimal amount = sourceUS(Convert.ToDecimal(input.Text), rate);
-                output.Text = Convert.ToString(Math.Round(amount, 2));
+                    decimal amount = sourceUS(Convert.ToDecimal(input.Text), rate);
+                    output.Text = Convert.ToString(Math.Round(amount, 2)) + " " + Convert.ToString(ComboBox1.SelectedItem);
+                }
+                else if (String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
+                {
+                    int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
+                    decimal rate = currencyRate[index];
+
+                    decimal amount = targetUS(Convert.ToDecimal(input.Text), rate);
+                    output.Text = Convert.ToString(Math.Round(amount, 2)) + " " + Convert.ToString(ComboBox1.SelectedItem);
+                }
+                else if (!String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal) && !String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
+                {
+                    int i = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
+                    decimal r = currencyRate[i];
+
+                    int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
+                    decimal rate = currencyRate[index];
+
+                    decimal amount = neitherUS(Convert.ToDecimal(input.Text), r, rate);
+                    output.Text = Convert.ToString(Math.Round(amount, 2)) + " " + Convert.ToString(ComboBox1.SelectedItem);
+                }
+                else
+                {
+
+                }
             }
-            else if (String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
+            catch
             {
-                int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
-                decimal rate = currencyRate[index];
-
-                decimal amount = targetUS(Convert.ToDecimal(input.Text), rate);
-                output.Text = Convert.ToString(Math.Round(amount, 2));
-            }
-            else if (!String.Equals(Convert.ToString(ComboBox.SelectedItem), "USD", System.StringComparison.Ordinal) && !String.Equals(Convert.ToString(ComboBox1.SelectedItem), "USD", System.StringComparison.Ordinal))
-            {
-                int i = ComboBox1.Items.IndexOf(Convert.ToString(ComboBox1.SelectedItem));
-                decimal r = currencyRate[i];
-
-                int index = ComboBox.Items.IndexOf(Convert.ToString(ComboBox.SelectedItem));
-                decimal rate = currencyRate[index];
-
-                decimal amount = neitherUS(Convert.ToDecimal(input.Text), r, rate);
-                output.Text = Convert.ToString(Math.Round(amount, 2));
-            }
-            else
-            {
-                output.Text = "There was an error  ¯\\_(ツ)_/¯";
+                var dialog = new MessageDialog("There was an error  ¯\\_(ツ)_/¯");
+                await dialog.ShowAsync();
             }
 
             MediaElement mediaElement = new MediaElement();

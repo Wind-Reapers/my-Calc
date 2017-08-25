@@ -1,0 +1,5 @@
+﻿USD;
+CAD;
+EUR;
+GBP;
+RUB;
