@@ -114,9 +114,9 @@ namespace myCalc
 
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                var dialog = new MessageDialog("There was an error  ¯\\_(ツ)_/¯");
+                var dialog = new MessageDialog(ex.Message);
                 await dialog.ShowAsync();
             }
 
